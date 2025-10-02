@@ -4,6 +4,7 @@ Caccamo, A., Dunstan, D.M., Richardson, M.P., Shaw, A.D., Goodfellow, M. (2025).
 ### Prerequisites
 The spm12 toolbox is required, please download it from https://www.fil.ion.ucl.ac.uk/spm/.
 
+### Contents
 Scripts to create figures and execute all data contained here are:
 run_plot_spectra_params.m
 run_plot_data_models.m in run_plot_data_models
