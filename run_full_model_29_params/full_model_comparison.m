@@ -1,10 +1,10 @@
 %% Full model 
 
 clearvars
-addpath('/Users/alessiacaccamo/Documents/Exeter/Data/spm12/spm12')
+addpath('spm12/spm12') % this requires SPM12 to be downloaded
 
 freq_bins = 2:0.5:45;
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/Spectra'
+cd 'Figures_DIP_DCM_25-main/Spectra'
 load('grand_PL_spectrum.mat'); %"average_across_subjects_pre_PL","average_across_subjects_post_PL");
 load('grand_LTG_spectrum.mat'); %"average_across_subjects_pre_LTG","average_across_subjects_post_LTG");
 load('grand_LEV_spectrum.mat'); %"average_across_subjects_pre_LEV","average_across_subjects_post_LEV");
@@ -24,7 +24,7 @@ load('grand_PL_subject_spectra.mat');
 % load('models_LEV_500_hybrid.mat'); % 'model_pre_LEV_all', 'model_post_LEV_all'
 
 %% Load hybrid data for full model
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_full_model_29_params'
+cd 'Figures_DIP_DCM_25-main/run_full_model_29_params'
 % PL
 load('models_PL_500_hybrid_29_params.mat')
 load('params_PL_hybrid.mat')

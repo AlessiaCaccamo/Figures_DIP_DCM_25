@@ -1,15 +1,12 @@
 % Alessia Caccamo, UoE, May 2025
 % Bayesian model comparison between full and reduced model (supplementary info)
 
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_full_model_29_params'
-
-
 freq_bins = 2:0.5:45;
-addpath('/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/Spectra')
+addpath('Figures_DIP_DCM_25-main/Spectra')
 load('log_PL_spectra.mat'); 
 
 % raw data is not provided due to storage capacity. 
-
+cd 'run_full_model_29_params'
 
 load('F_all_reduced.mat', 'F_pre_PL_reduced', 'F_post_PL_reduced', 'F_pre_LTG_reduced', 'F_post_LTG_reduced', 'F_pre_LEV_reduced', 'F_post_LEV_reduced');
 load('F_all_full.mat', 'F_pre_PL_full', 'F_post_PL_full', 'F_pre_LTG_full', 'F_post_LTG_full', 'F_pre_LEV_full', 'F_post_LEV_full');
