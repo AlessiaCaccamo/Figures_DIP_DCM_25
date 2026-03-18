@@ -2,8 +2,7 @@
 %% Load empirical data
 clearvars
 
-%cd '/Users/alessiacaccamo/Documents/Exeter/Data/ForAlessia_SZ_VisualGammaVirtualElectrodesSPM/Final_Results_150_gen'
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_validate_on_scz_study2'
+cd 'Figures_DIP_DCM_25-main/run_validate_on_scz_study2'
 load('Spectra_all_subj_norm_final.mat'); % 'average_spectrum', 'average_spectrum_patient', 'f', 'f_patient', 'mas_control', 'mas_patient');
 indx=find(f<=85);
 mas_control=mas_control(indx);
@@ -16,7 +15,6 @@ data_psd_patient=log(mas_patient);
 
 
 %% Load model spectra and params Hybrid
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_validate_on_scz_study2'
 load('Hybrid_LFP_model_grand_log_ctl_scz_19_Dec.mat'); % 'model_control_all', 'model_patient_all');
 load('Hybrid_LFP_params_19_Dec.mat'); % 'params_DCM_ctl', 'params_DCM_scz', 'cov_DCM_ctl', 'cov_DCM_scz');
 load('Hybrid_LFP_log_params_ctl_scz_19_Dec.mat'); % 'log_params_DCM_ctl', 'log_params_DCM_scz', 'cov_DCM_ctl', 'cov_DCM_scz');
@@ -133,44 +131,6 @@ paramsvec = {'R1','R2','Te','Ti','He', 'G1', 'G2', 'G3', 'G4', 'G5','A1','A2','A
 load('Hybrid_LFP_params_19_Dec.mat'); % 'params_DCM_ctl', 'params_DCM_scz', 'cov_DCM_ctl', 'cov_DCM_scz');
 load('Hybrid_LFP_log_params_ctl_scz_19_Dec.mat'); % 'log_params_DCM_ctl', 'log_params_DCM_scz', 'cov_DCM_ctl', 'cov_DCM_scz');
 
-for ii=1:15
-muvec_pre=log_params_DCM_ctl(ii,:);
-varvec_pre=cov_DCM_ctl(ii, :);
-muvec_post=log_params_DCM_scz(ii,:);
-varvec_post=cov_DCM_scz(ii, :);
-x = linspace(min(muvec_pre) - 3*sqrt(max(varvec_pre)), max(muvec_pre) + 3*sqrt(max(varvec_pre)), 1000); % for log params
-total_density_pre = zeros(size(x));
-total_density_post = zeros(size(x));
-for i = 1:length(muvec_pre)
-    mu_pre = muvec_pre(i);
-    sigma_pre = sqrt(varvec_pre(i)); % Standard deviation is the square root of variance
-    mu_post = muvec_post(i);
-    sigma_post = sqrt(varvec_post(i));
-    pdf_pre = (1/(sigma_pre * sqrt(2 * pi))) * exp(-0.5 * ((x - mu_pre) / sigma_pre).^2);% pdf of current distribution
-    pdf_post = (1/(sigma_post * sqrt(2 * pi))) * exp(-0.5 * ((x - mu_post) / sigma_post).^2);% pdf of current distribution
-    total_density_pre = total_density_pre + (pdf_pre/length(muvec_pre)); % each pdf contributes 1/500 (weighted) to the overall sum, which adds up to 1. 
-    total_density_post = total_density_post + (pdf_post/length(muvec_pre));
-end
-
-cumulative_density_pre = cumsum(total_density_pre); % CDF
-cumulative_density_pre = cumulative_density_pre / cumulative_density_pre(end); % Normalize CDF
-cumulative_density_post = cumsum(total_density_post); % CDF
-cumulative_density_post = cumulative_density_post / cumulative_density_post(end); % Normalize CDF
-
-random_samples_pre = zeros(1e5, 1); % Initialize the samples array
-random_samples_post = zeros(1e5, 1);
-for n = 1:1e5
-    rand_num = rand(); % Generate uniform random numbser
-    random_samples_pre(n) = x(find(cumulative_density_pre >= rand_num, 1, 'first')); % Inverse transform sampling
-    random_samples_post(n) = x(find(cumulative_density_post >= rand_num, 1, 'first'));
-end
-%cohen's d
-d(ii)=(mean(random_samples_post) - mean(random_samples_pre))/sqrt((var(random_samples_post)+var(random_samples_pre))/2);
-end
-
-%save('inferences_hybrid_ctl_scz_150_gen.mat', 'd');
-
-
 
 %% Cohen's d DCM
 load('DCM_LFP_log_params_ctl_scz_19_Dec.mat')
@@ -192,9 +152,6 @@ for i = 1:15
     % cohen's d 
     d_dcm(i) = (mean_scz - mean_ctl)/sqrt((variance_ctl+variance_scz)/2);
 end
-
-% save('inferences_dcm_ctl_scz.mat', 'd_dcm');
-
 
 %% Plot Hybrid and DCM params. Figure 6B
 
