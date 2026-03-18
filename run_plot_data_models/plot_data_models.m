@@ -2,10 +2,9 @@
 
 clearvars
 % set path
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25'
-addpath('/Users/alessiacaccamo/Documents/Exeter/Data/spm12/spm12'); % needs spm path before running
-addpath('/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25'); %path containing violin plot
-addpath('/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/Spectra'); %path containing violin plot
+cd 'Figures_DIP_DCM_25-main'
+addpath('spm12/spm12'); % Requires SPM12 to be downloaded
+addpath('Spectra'); %path containing violin plot
 
 %% Load empirical data
 freq_bins = 2:0.5:45;
@@ -73,13 +72,13 @@ legend('Pre-LEV', 'Post-LEV', 'FontSize',12);
 
 
 %% Load model spectra DCM
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/DCM'
+cd 'Figures_DIP_DCM_25-main/DCM'
 load('DCM_LFP_model_spectra_grand_log_PL_31_May.mat'); % 'model_pre_PL', 'model_post_PL');
 load('DCM_LFP_model_spectra_grand_log_LTG_31_May.mat'); % 'model_pre_LTG', 'model_post_LTG');
 load('DCM_LFP_model_spectra_grand_log_LEV_31_May.mat'); % 'model_pre_LEV', 'model_post_LEV');
 
 %% %% Load model spectra GA
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_plot_data_models'
+cd 'Figures_DIP_DCM_25-main/run_plot_data_models'
 load('MOGA_LFP_model_spectra_LEV_grand_150_gen.mat');
 psd_m_pre_all_LEV=psd_m_pre_all;
 psd_m_post_all_LEV=psd_m_post_all;
@@ -92,7 +91,7 @@ psd_m_post_all_PL=psd_m_post_all;
 
 
 %% Replot RMSE violins for hybrid method
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_plot_data_models'
+cd 'Figures_DIP_DCM_25-main/run_plot_data_models'
 load('models_PL_500_hybrid_150_gen.mat', 'model_pre_PL_all', 'model_post_PL_all');
 load('models_LTG_500_hybrid_150_gen.mat', 'model_pre_LTG_all', 'model_post_LTG_all');
 load('models_LEV_500_hybrid_150_gen.mat', 'model_pre_LEV_all', 'model_post_LEV_all');
