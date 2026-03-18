@@ -3,15 +3,15 @@
 % code used is below
 
 clearvars
-addpath('/Users/alessiacaccamo/Documents/Exeter/Data/spm12/spm12'); % needs spm path before running
-addpath('/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency')
-%%
+addpath('spm12/spm12'); % SPM12 needs to be downloaded
+%% This can only be run using the raw data, which could not be uploaded for space constraints
+cd('run_efficiency')
 % MOGA RMSE
 n_values = 500;
 for n = n_values
 % data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/' ...
 %                    'Hybrid_PL_efficiency/' num2str(n) '_gen'];
-data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency/' num2str(n) '_gen'];
+data_folder = ['Hybrid_PL_efficiency/' num2str(n) '_gen'];
 cd(data_folder); 
 load('grand_PL_spectrum.mat'); %'average_across_subjects', from data_analysis.m
 grand_log_norm_pre_PL_csd = log(movmean(average_across_subjects,5)');
@@ -96,7 +96,7 @@ total_runtime_pre_PL_500 = [];
 
 n_values = [2,5,10,20, 50, 100, 150, 200, 250, 300, 500];
 for n = n_values
-    data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency/' num2str(n) '_gen'];
+    data_folder = ['Hybrid_PL_efficiency/' num2str(n) '_gen'];
     cd(data_folder);
     load(['pre_PL_MOGA_prior_means_500_' num2str(n) '_gen.mat']); % Load necessary variables
     runtime_current_n = zeros(1, 500); % 1x500 vector, 500 repeats
@@ -113,7 +113,7 @@ for n = n_values
     %runtime_current_n = runtime_current_n(runtime_current_n ~= 0); 
     eval(['runtime_pre_PL_' num2str(n) ' = runtime_current_n;']);
 
-    data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency/' num2str(n) '_gen/After_DCM'];
+    data_folder = ['Hybrid_PL_efficiency/' num2str(n) '_gen/After_DCM'];
     cd(data_folder);
     dcm_runtime_current_n = zeros(1, 500);
     for nsim = 1:500
@@ -126,7 +126,7 @@ end
 
 % For zero gen there is no MOGA
 for n = 0   
-    data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency/' num2str(n) '_gen'];
+    data_folder = ['Hybrid_PL_efficiency/' num2str(n) '_gen'];
     cd(data_folder);
     dcm_runtime_current_n = zeros(1, 500);
     for nsim = 1:500
@@ -141,7 +141,7 @@ end
 % RMSE
 n_values = [2,5,10,20, 50, 100, 150, 200, 250, 300, 500];
 for n = n_values
-data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency/' num2str(n) '_gen/After_DCM'];
+data_folder = ['Hybrid_PL_efficiency/' num2str(n) '_gen/After_DCM'];
 cd(data_folder);
 model_pre_PL_all=zeros(57,500);
 for nsim = 1:500   
@@ -155,7 +155,7 @@ end
 
 n_values = 0;
 for n = n_values
-data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency/' num2str(n) '_gen'];
+data_folder = ['Hybrid_PL_efficiency/' num2str(n) '_gen'];
 cd(data_folder);
 model_pre_PL_all=zeros(57,500);
 for nsim = 1:500   
@@ -257,7 +257,7 @@ legend('LH', 'DIP, 500', 'DIP, 150', 'GA');
 % Plot zero generations hybrid vs data, 150 generations hybrid, and 500 generations MOGA
 n_values = [0];
 for n = n_values
-data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency/' num2str(n) '_gen'];
+data_folder = ['Hybrid_PL_efficiency/' num2str(n) '_gen'];
 cd(data_folder);
 model_pre_PL_all=zeros(57,500);
 for nsim = 1:500   
@@ -268,7 +268,7 @@ end
 end
 n_values = [150];
 for n = n_values
-data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency/' num2str(n) '_gen/After_DCM'];
+data_folder = ['Hybrid_PL_efficiency/' num2str(n) '_gen/After_DCM'];
 cd(data_folder);
 model_pre_PL_all=zeros(57,500);
 for nsim = 1:500   
@@ -280,7 +280,7 @@ end
 
 n_values = [500];
 for n = n_values
-data_folder = ['/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_efficiency/Hybrid_PL_efficiency/' num2str(n) '_gen/After_DCM'];
+data_folder = ['Hybrid_PL_efficiency/' num2str(n) '_gen/After_DCM'];
 cd(data_folder);
 model_pre_PL_all=zeros(57,500);
 for nsim = 1:500   
