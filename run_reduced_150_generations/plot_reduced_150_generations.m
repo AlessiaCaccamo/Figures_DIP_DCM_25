@@ -1,59 +1,45 @@
 %% Re-run analyses for 150 generations rather than 500.
 
 %% Load model MOGA spectra
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LEV'
 
+cd 'Figures_DIP_DCM_25-main/run_efficiency/Hybrid_efficiency/150_gen_all'
+cd 'LEV'
 load('MOGA_LFP_model_spectra_LEV_grand_150_gen.mat'); % 'psd_m_pre_all', 'psd_m_post_all');
 psd_m_pre_all_LEV=psd_m_pre_all;
 psd_m_post_all_LEV=psd_m_post_all;
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/PL'
+load('MOGA_LFP_LEV_params_150_gen.mat'); % 'all_sim_params_pre_LEV', 'all_sim_params_post_LEV');
+load('MOGA_LFP_LEV_log_params_150_gen.mat'); % 'all_sim_log_params_pre_LEV', 'all_sim_log_params_post_LEV');
+%%
+cd 'Figures_DIP_DCM_25-main/run_efficiency/Hybrid_efficiency/150_gen_all'
+cd 'PL'
 load('MOGA_LFP_model_spectra_PL_grand_150_gen.mat'); % 'psd_m_pre_all', 'psd_m_post_all');
 psd_m_pre_all_PL=psd_m_pre_all;
 psd_m_post_all_PL=psd_m_post_all;
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LTG'
+load('MOGA_LFP_PL_params_150_gen.mat'); % 'all_sim_params_pre_PL', 'all_sim_params_post_PL');
+load('MOGA_LFP_PL_log_params_150_gen.mat'); % 'all_sim_log_params_pre_PL', 'all_sim_log_params_post_PL');
+%%
+cd 'Figures_DIP_DCM_25-main/run_efficiency/Hybrid_efficiency/150_gen_all'
+cd 'LTG'
 load('MOGA_LFP_model_spectra_LTG_grand_150_gen.mat'); % 'psd_m_pre_all', 'psd_m_post_all');
 psd_m_pre_all_LTG=psd_m_pre_all;
 psd_m_post_all_LTG=psd_m_post_all;
-
-
-%% Load MOGA params
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/PL'
-load('MOGA_LFP_PL_params_150_gen.mat'); % 'all_sim_params_pre_PL', 'all_sim_params_post_PL');
-
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LTG'
 load('MOGA_LFP_LTG_params_150_gen.mat'); % 'all_sim_params_pre_LTG', 'all_sim_params_post_LTG');
-
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LEV'
-load('MOGA_LFP_LEV_params_150_gen.mat'); % 'all_sim_params_pre_LEV', 'all_sim_params_post_LEV');
-
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/PL'
-load('MOGA_LFP_PL_log_params_150_gen.mat'); % 'all_sim_log_params_pre_PL', 'all_sim_log_params_post_PL');
-
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LTG'
 load('MOGA_LFP_LTG_log_params_150_gen.mat'); % 'all_sim_log_params_pre_LTG', 'all_sim_log_params_post_LTG');
 
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LEV'
-load('MOGA_LFP_LEV_log_params_150_gen.mat'); % 'all_sim_log_params_pre_LEV', 'all_sim_log_params_post_LEV');
-
 %% Load params obtained via hybrid method
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/PL/After_DCM'
+cd 'PL/After_DCM'
 load('params_PL_hybrid.mat');
 load('log_params_PL_hybrid_posteriors.mat');
+load('models_PL_500_hybrid.mat', 'model_pre_PL_all', 'model_post_PL_all');
 
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LTG/After_DCM'
+cd 'LTG/After_DCM'
 load('params_LTG_hybrid.mat');
 load('log_params_LTG_hybrid_posteriors.mat');
+load('models_LTG_500_hybrid.mat', 'model_pre_LTG_all', 'model_post_LTG_all');
 
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LEV/After_DCM'
+cd 'LEV/After_DCM'
 load('log_params_LEV_hybrid_posteriors.mat');
 load('params_LEV_hybrid.mat');
-
-%% Hybrid models
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/PL/After_DCM'
-load('models_PL_500_hybrid.mat', 'model_pre_PL_all', 'model_post_PL_all');
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LTG/After_DCM'
-load('models_LTG_500_hybrid.mat', 'model_pre_LTG_all', 'model_post_LTG_all');
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all/LEV/After_DCM'
 load('models_LEV_500_hybrid.mat', 'model_pre_LEV_all', 'model_post_LEV_all');
 
 
@@ -233,7 +219,7 @@ end
 
 %% Inferences summary Cohen's d 
 % cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Placebo/LFP_DCM/Hybrid_PL_efficiency/150_gen_all'
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_reduced_150_generations'
+cd 'Figures_DIP_DCM_25-main/run_reduced_150_generations'
 load('inferences_summary_data_150_gen.mat'); % load inferences from file (they are the same as those generated above)
 d_PL_2=d_PL';
 d_LTG_2=d_LTG';
@@ -369,8 +355,7 @@ end
 
 
 %% re-save different numbers of repeats 
-addpath '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_reduced_150_generations'
-
+cd 'Figures_DIP_DCM_25-main/run_reduced_150_generations'
 load('log_PL_spectra.mat');
 load('log_LTG_spectra.mat');
 load('log_LEV_spectra.mat');
@@ -569,7 +554,7 @@ end
 % 
 
 %% Supplementary Figure S2B
-cd '/Users/alessiacaccamo/Documents/Exeter/Data/TMS-EEG-Biondi2022/TMS-EEG_Isabella/TMS-EEG_Isabella/eyes_closed/Figures_DIP_DCM_25/run_reduced_150_generations'
+cd 'run_reduced_150_generations'
 load('inferences_summary_data_all_gen.mat');
 load('inferences_summary_data_all_gen_final.mat');
 
